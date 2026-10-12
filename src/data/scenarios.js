@@ -1,0 +1,67 @@
+export const scenarios = [
+  {
+    id: 'refund-deception',
+    name: 'Refund deception',
+    short: 'Receive vs pay contradiction',
+    expectedOutcome: 'intent_mismatch',
+    intent: {
+      type: 'receive_refund',
+      expectedRecipient: 'Nova Electronics',
+      expectedAmount: '4999',
+      description: 'A caller says this QR will credit a refund to me.',
+    },
+    uri: 'upi://pay?pa=refunddesk@upi&pn=Nova%20Electronics&am=4999&cu=INR&tn=Refund%20processing',
+  },
+  {
+    id: 'correct-payment',
+    name: 'Correct intended payment',
+    short: 'Recipient and amount match',
+    expectedOutcome: 'no_mismatch',
+    intent: {
+      type: 'pay_merchant',
+      expectedRecipient: 'Asha Stores',
+      expectedAmount: '850',
+      description: 'I am paying Asha Stores ₹850 for my purchase.',
+    },
+    uri: 'upi://pay?pa=ashastores@upi&pn=Asha%20Stores&am=850&cu=INR&tn=Invoice%20104',
+  },
+  {
+    id: 'wrong-recipient',
+    name: 'Wrong recipient',
+    short: 'Payee differs from intent',
+    expectedOutcome: 'verify',
+    intent: {
+      type: 'pay_merchant',
+      expectedRecipient: 'Metro Medicals',
+      expectedAmount: '1260',
+      description: 'I am paying Metro Medicals for medicines.',
+    },
+    uri: 'upi://pay?pa=quickcollect@upi&pn=Quick%20Collect&am=1260&cu=INR&tn=Medicine%20bill',
+  },
+  {
+    id: 'amount-mismatch',
+    name: 'Amount mismatch',
+    short: 'Requested amount is higher',
+    expectedOutcome: 'verify',
+    intent: {
+      type: 'pay_person',
+      expectedRecipient: 'Riya Sharma',
+      expectedAmount: '500',
+      description: 'I agreed to send Riya ₹500.',
+    },
+    uri: 'upi://pay?pa=riya.sharma@upi&pn=Riya%20Sharma&am=5000&cu=INR&tn=Personal%20payment',
+  },
+  {
+    id: 'incomplete-information',
+    name: 'Incomplete information',
+    short: 'Amount needed but unavailable',
+    expectedOutcome: 'unable',
+    intent: {
+      type: 'pay_amount',
+      expectedRecipient: 'City Cabs',
+      expectedAmount: '320',
+      description: 'I expect to pay City Cabs exactly ₹320.',
+    },
+    uri: 'upi://pay?pa=citycabs@upi&pn=City%20Cabs&cu=INR',
+  },
+];
