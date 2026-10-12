@@ -1,0 +1,27 @@
+{
+  "name": "novanex-msme-working-capital-engine",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "description": "Account-aware MSME working-capital early warning and financing decision-support engine",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server/productionServer.js",
+    "server": "node server/accountServer.js",
+    "test": "node --test tests/*.test.js",
+    "smoke": "node scripts/smoke.mjs",
+    "check": "node --check web/app.js && node --check server/config.js && node --check server/accountServer.js && node --check server/productionServer.js && node --check scripts/smoke.mjs && node --check src/lib/dateUtils.js && node --check src/lib/invoiceForecasting.js && node --check src/lib/cashflowForecasting.js && node --check src/lib/gapDetection.js && node --check src/lib/financing.js && node --check src/lib/recommendations.js && node --check src/lib/dataManager.js && node --check src/lib/accountLedger.js && node --check src/data/demoData.js",
+    "verify": "npm run check && npm test && npm run smoke",
+    "dev:react": "vite",
+    "build:react": "vite build",
+    "dev:legacy-full": "node scripts/devFull.mjs"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "4.3.4",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "vite": "5.4.14"
+  }
+}

@@ -1,0 +1,14 @@
+NovaNex MSME Engine - Windows Start Here
+
+1. Extract the ZIP completely.
+2. Open the extracted folder. package.json, server, web, src, tests and run_windows.bat must be visible together.
+3. Double-click run_windows.bat, or open Command Prompt in that exact folder and run:
+
+   node --version
+   npm run verify
+   npm start
+
+4. Open http://127.0.0.1:8080
+5. Keep the Command Prompt window open while using the application.
+
+If an older ZIP showed a completely white page on Windows, delete that extracted copy and use this package. The Windows static-file routing bug has been corrected.

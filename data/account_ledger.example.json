@@ -1,0 +1,8 @@
+{
+  "account_name": "MSME Operating Account",
+  "account_mask": "XXXX 4821",
+  "currency": "INR",
+  "base_balance": 235000,
+  "base_balance_as_of": "2026-10-12T00:00:00.000Z",
+  "transactions": []
+}

@@ -1,0 +1,17 @@
+services:
+  novanex-msme:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8080
+      ACCOUNT_LEDGER_PATH: /app/runtime/account_ledger.local.json
+      REQUIRE_WRITE_API_KEY: "true"
+      ACCOUNT_WRITE_API_KEY: ${ACCOUNT_WRITE_API_KEY:?Set ACCOUNT_WRITE_API_KEY in your .env file}
+    volumes:
+      - novanex-runtime:/app/runtime
+    restart: unless-stopped
+
+volumes:
+  novanex-runtime:

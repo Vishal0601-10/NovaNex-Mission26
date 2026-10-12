@@ -1,0 +1,214 @@
+
+> novanex-msme-working-capital-engine@2.0.0 verify
+> npm run check && npm test && npm run smoke
+
+
+> novanex-msme-working-capital-engine@2.0.0 check
+> node --check web/app.js && node --check server/config.js && node --check server/accountServer.js && node --check server/productionServer.js && node --check scripts/smoke.mjs && node --check src/lib/dateUtils.js && node --check src/lib/invoiceForecasting.js && node --check src/lib/cashflowForecasting.js && node --check src/lib/gapDetection.js && node --check src/lib/financing.js && node --check src/lib/recommendations.js && node --check src/lib/dataManager.js && node --check src/lib/accountLedger.js && node --check src/data/demoData.js
+
+
+> novanex-msme-working-capital-engine@2.0.0 test
+> node --test tests/*.test.js
+
+TAP version 13
+# Subtest: outstanding balance handles partial payment
+ok 1 - outstanding balance handles partial payment
+  ---
+  duration_ms: 8.051328
+  type: 'test'
+  ...
+# Subtest: historical payment delay is customer-specific
+ok 2 - historical payment delay is customer-specific
+  ---
+  duration_ms: 7.630375
+  type: 'test'
+  ...
+# Subtest: expected collection uses median customer delay when enough history exists
+ok 3 - expected collection uses median customer delay when enough history exists
+  ---
+  duration_ms: 1.958943
+  type: 'test'
+  ...
+# Subtest: expected collection falls back transparently when history is insufficient
+ok 4 - expected collection falls back transparently when history is insufficient
+  ---
+  duration_ms: 0.317111
+  type: 'test'
+  ...
+# Subtest: forecast produces exact 7, 14, and 30 day windows
+ok 5 - forecast produces exact 7, 14, and 30 day windows
+  ---
+  duration_ms: 9.112832
+  type: 'test'
+  ...
+# Subtest: daily cash projection separates inflow certainty and outflows
+ok 6 - daily cash projection separates inflow certainty and outflows
+  ---
+  duration_ms: 0.411781
+  type: 'test'
+  ...
+# Subtest: liquidity detector calculates first shortage, maximum gap, duration, and recovery
+ok 7 - liquidity detector calculates first shortage, maximum gap, duration, and recovery
+  ---
+  duration_ms: 0.454743
+  type: 'test'
+  ...
+# Subtest: zero reserve scenario is explicit and can still detect negative cash
+ok 8 - zero reserve scenario is explicit and can still detect negative cash
+  ---
+  duration_ms: 0.138047
+  type: 'test'
+  ...
+# Subtest: simple interest follows principal × annual rate × days / 365
+ok 9 - simple interest follows principal × annual rate × days / 365
+  ---
+  duration_ms: 7.620976
+  type: 'test'
+  ...
+# Subtest: credit line distinguishes approved limit from amount available to draw
+ok 10 - credit line distinguishes approved limit from amount available to draw
+  ---
+  duration_ms: 1.024968
+  type: 'test'
+  ...
+# Subtest: cheaper financing arriving after deadline is infeasible
+ok 11 - cheaper financing arriving after deadline is infeasible
+  ---
+  duration_ms: 0.26619
+  type: 'test'
+  ...
+# Subtest: financing net proceeds deduct upfront fees
+ok 12 - financing net proceeds deduct upfront fees
+  ---
+  duration_ms: 0.166953
+  type: 'test'
+  ...
+# Subtest: supplier rescheduling requires contractual permission
+ok 13 - supplier rescheduling requires contractual permission
+  ---
+  duration_ms: 0.122618
+  type: 'test'
+  ...
+# Subtest: no-gap forecast recommends no additional borrowing
+ok 14 - no-gap forecast recommends no additional borrowing
+  ---
+  duration_ms: 0.330271
+  type: 'test'
+  ...
+# Subtest: recommendation enforces feasibility before cost
+ok 15 - recommendation enforces feasibility before cost
+  ---
+  duration_ms: 0.248994
+  type: 'test'
+  ...
+# Subtest: CSV import validates required columns and duplicates
+ok 16 - CSV import validates required columns and duplicates
+  ---
+  duration_ms: 0.7132
+  type: 'test'
+  ...
+# Subtest: CSV import rejects invalid amounts and dates
+ok 17 - CSV import rejects invalid amounts and dates
+  ---
+  duration_ms: 0.149257
+  type: 'test'
+  ...
+# Subtest: financed receivables can be excluded to prevent double counting
+ok 18 - financed receivables can be excluded to prevent double counting
+  ---
+  duration_ms: 0.379528
+  type: 'test'
+  ...
+# Subtest: financing proceeds are not automatically injected into base forecast
+ok 19 - financing proceeds are not automatically injected into base forecast
+  ---
+  duration_ms: 0.085555
+  type: 'test'
+  ...
+# Subtest: financing comparison lists ineligible options behind feasible ones
+ok 20 - financing comparison lists ineligible options behind feasible ones
+  ---
+  duration_ms: 3.846871
+  type: 'test'
+  ...
+# Subtest: account transaction normalization requires a positive amount and transaction id
+ok 21 - account transaction normalization requires a positive amount and transaction id
+  ---
+  duration_ms: 0.655159
+  type: 'test'
+  ...
+# Subtest: account ledger rejects duplicate bank transaction ids
+ok 22 - account ledger rejects duplicate bank transaction ids
+  ---
+  duration_ms: 0.472809
+  type: 'test'
+  ...
+# Subtest: tracked account balance applies posted credits and debits
+ok 23 - tracked account balance applies posted credits and debits
+  ---
+  duration_ms: 0.163503
+  type: 'test'
+  ...
+# Subtest: account summary reports actual credited and debited amounts for the day
+ok 24 - account summary reports actual credited and debited amounts for the day
+  ---
+  duration_ms: 35.38811
+  type: 'test'
+  ...
+# Subtest: credited payment reconciles to invoice and reduces outstanding amount
+ok 25 - credited payment reconciles to invoice and reduces outstanding amount
+  ---
+  duration_ms: 2.01371
+  type: 'test'
+  ...
+# Subtest: unmatched account credit still increases bank cash without changing invoice collection
+ok 26 - unmatched account credit still increases bank cash without changing invoice collection
+  ---
+  duration_ms: 0.148201
+  type: 'test'
+  ...
+# Subtest: invoice reconciliation caps applied credit at remaining invoice balance
+ok 27 - invoice reconciliation caps applied credit at remaining invoice balance
+  ---
+  duration_ms: 3.383463
+  type: 'test'
+  ...
+# Subtest: actual credited cash and remaining receivable are counted exactly once
+ok 28 - actual credited cash and remaining receivable are counted exactly once
+  ---
+  duration_ms: 0.518261
+  type: 'test'
+  ...
+1..28
+# tests 28
+# suites 0
+# pass 28
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 410.046203
+
+> novanex-msme-working-capital-engine@2.0.0 smoke
+> node scripts/smoke.mjs
+
+Production smoke test passed:
+  ✓ dashboard HTML served
+  ✓ browser financial modules served
+  ✓ health endpoint passed
+  ✓ account ledger snapshot passed
+  ✓ write API key enforced
+  ✓ ₹50,000 credit changed ₹235,000 → ₹285,000
+  ✓ duplicate transaction rejected with HTTP 409
+
+WINDOWS STATIC FILE FIX (2026-10-12)
+====================================
+Observed symptom: HTML shell loaded at 127.0.0.1:8080 but page remained blank on Windows.
+Root cause: static-file path containment used a hard-coded forward-slash prefix check. Valid Windows paths use backslashes, so app.js/CSS/ES modules were rejected.
+Fix: containment now uses node:path relative() + isAbsolute(), which is platform-aware.
+Verification:
+- npm run check: PASS
+- npm test: 28/28 PASS
+- npm run smoke: PASS
+- node:path.win32 regression simulation: PASS
+- traversal attempt ../server/productionServer.js: correctly rejected

@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.vite/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+coverage/
+data/account_ledger.local.json
+data/account_ledger.local.json.tmp
+runtime/
+dashboard-preview.png

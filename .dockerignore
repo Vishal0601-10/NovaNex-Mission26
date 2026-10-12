@@ -1,0 +1,11 @@
+.git
+.gitignore
+node_modules
+dist
+.vite
+.env
+*.log
+coverage
+data/account_ledger.local.json
+data/account_ledger.local.json.tmp
+dashboard-preview.png

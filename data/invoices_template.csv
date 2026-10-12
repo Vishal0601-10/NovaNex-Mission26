@@ -1,0 +1,2 @@
+invoice_number,customer,invoice_date,due_date,amount,amount_collected,actual_payment_date,collection_certainty
+INV-200,Example Customer,2026-10-01,2026-10-31,150000,0,,expected
